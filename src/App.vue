@@ -1,23 +1,29 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div>
-    <router-link to="/">Home</router-link>
-    <router-link to="/locations">Locations</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/signup">Signup</router-link>
-  </div>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    <div class="wrapper">
-      <HelloWorld msg="Home" />
-    </div>
-  </header>
-
+  <RouterView></RouterView>
 </template>
-<!-- put navbar on top -->
+
+<script>
+import Routerview from '@/components/RouterView.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Routerview
+  },
+  data() {
+    return {
+    };
+  },
+  methods: {
+  },
+  mounted() {
+  },
+}
+</script>
+
 <style scoped>
 
 header {

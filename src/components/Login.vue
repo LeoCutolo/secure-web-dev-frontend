@@ -4,7 +4,7 @@ import HelloWorld from './HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="/src/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
       <HelloWorld msg="Login" />
     </div>
@@ -47,17 +47,25 @@ export default {
           }
         });
         localStorage.setItem('token', data.jwt);
-        this.$router.push('/location')
+        console.log("jwt: " + localStorage.getItem('token'));
+        await this.setRole(data.jwt);
+        this.$router.push('/locations')
       } catch (error) {
         console.error(error);
       }
     },
-    async setRole(){
-      const { data } = await axios.get('http://localhost:3000/users/me', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+    async setRole(token) {
+      try{
+        const {data} = await axios.get('http://localhost:3000/users/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        localStorage.setItem('role', data.role);
+        console.log("Role: " + localStorage.getItem('role'));
+      } catch (error) {
+        console.error(error);
+      }
     },
   }
 };

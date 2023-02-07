@@ -4,9 +4,9 @@ import HelloWorld from './HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="/src/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
-      <HelloWorld msg="Signup" />
+      <HelloWorld msg="Sign Up" />
     </div>
   </header>
   <form @submit.prevent="submitForm">
@@ -21,3 +21,34 @@ import HelloWorld from './HelloWorld.vue'
     <button type="submit">Submit</button>
   </form>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'SignUp',
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        const { data } = await axios.post('http://localhost:3000/users/register', {
+          username: this.username,
+          password: this.password,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        this.$router.push('/login')
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  }
+};
+
+</script>
