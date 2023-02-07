@@ -47,7 +47,7 @@ export default {
           }
         });
         localStorage.setItem('token', data.jwt);
-        console.log("jwt: " + localStorage.getItem('token'));
+        //console.log("jwt: " + localStorage.getItem('token'));
         await this.setRole(data.jwt);
         this.$router.push('/locations')
       } catch (error) {
@@ -62,7 +62,7 @@ export default {
           }
         });
         localStorage.setItem('role', data.role);
-        console.log("Role: " + localStorage.getItem('role'));
+        //console.log("Role: " + localStorage.getItem('role'));
       } catch (error) {
         console.error(error);
       }
