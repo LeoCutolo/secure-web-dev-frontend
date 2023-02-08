@@ -25,5 +25,6 @@ US2: As a random visitor, I want to be redirected to the login/register page whe
 
 US7: As a logged in user i want to be able to sign-out
 ## Information 
-<p> An admin user is already present </p>
-<p> its credentials are <b>admin:admin</b> </p>
+An admin user is already present
+
+its credentials are <b>admin:admin</b>
