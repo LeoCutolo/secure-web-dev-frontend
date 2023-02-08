@@ -14,7 +14,7 @@
         <p id="directorName">{{ location.filmDirectorName.toLowerCase() }}</p>
         <div v-if="this.role === 'admin'" class="adminSection">
           <button v-on:click="edit(location)">Edit</button>
-          <button v-on:click="delete(location._id)">Delete</button>
+          <button v-on:click="remove(location)">Delete</button>
         </div>
       </div>
     </div>
@@ -78,9 +78,15 @@ export default {
       this.offset += 9;
       this.getLocations();
     },
-    async delete(location){
+    add() {
+      this.$router.push('/add');
+    },
+    async remove(location){
+      if (!confirm("Are you sure you want to delete this location?")) {
+        return;
+      }
       try {
-        await axios.delete('http://localhost:3000/locations/' + location.id, {
+        await axios.delete('http://localhost:3000/locations/' + location._id + '?offset=0&limit=9', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json',

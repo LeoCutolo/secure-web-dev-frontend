@@ -23,6 +23,8 @@ US1: As a random visitor, I want to be able to register an account or log-in, so
 
 US2: As a random visitor, I want to be redirected to the login/register page when I click on “location" tab, so that I know I must log-in to see its content
 
+US6: As an “admin" user, I want to see a button to delete locations in the array of locations so that I can delete existing locations
+
 US7: As a logged in user i want to be able to sign-out
 ## Information 
 An admin user is already present
