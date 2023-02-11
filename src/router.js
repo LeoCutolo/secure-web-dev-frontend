@@ -4,6 +4,8 @@ import SignUp from './components/SignUp.vue'
 import Locations from "./components/Locations.vue";
 import Homepage from "./components/Homepage.vue";
 import AddLocation from "./components/AddLocation.vue";
+import EditLocation from "./components/EditLocation.vue";
+import Location from "./components/Location.vue";
 
 const routes = [
     {
@@ -30,6 +32,16 @@ const routes = [
         path: '/add',
         name: 'add',
         component: AddLocation
+    },
+    {
+        path: '/editlocation/:id',
+        name: 'editlocation',
+        component: EditLocation
+    },
+    {
+        path: '/location/:id',
+        name: 'location',
+        component: Location
     }
 ]
 
