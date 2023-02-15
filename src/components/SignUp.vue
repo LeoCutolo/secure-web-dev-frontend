@@ -10,12 +10,12 @@ import HelloWorld from './HelloWorld.vue'
     </div>
   </header>
   <form @submit.prevent="submitForm">
-    <div>
-      <label for="username">Username: </label>
+    <div class="input">
+      <label for="username">Username</label>
       <input id="username" v-model="username"/>
     </div>
-    <div>
-      <label for="password">Password: </label>
+    <div class="input">
+      <label for="password">Password</label>
       <input id="password" v-model="password" type="password"/>
     </div>
     <button type="submit">Submit</button>
@@ -55,3 +55,34 @@ export default {
 };
 
 </script>
+
+<style scoped>
+
+header {
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  place-items: center;
+  padding-right: calc(var(--section-gap) / 2);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+
+</style>
