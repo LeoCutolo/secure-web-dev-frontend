@@ -5,7 +5,7 @@
         <div class="geolocation">
           <li id="type">
             <label for="type">Type: </label>
-            <select id="type" v-model="type">
+            <select id="type" v-model="geolocationType">
               <option value="Feature">Feature</option>
               <option value="Point">Point</option>
             </select>
@@ -59,6 +59,9 @@
       </ul>
       <button type="submit">Submit</button>
     </form>
+    <footer>
+      <router-link v-bind:to="{name: 'locations'}">Back to Locations</router-link>
+    </footer>
   </div>
 </template>
 
@@ -69,8 +72,11 @@ export default {
   name: 'addLocation',
   data() {
     return {
-      type: '',
-      coordinates: [],
+      geolocation: {
+        type: '',
+        coordinates: []
+      },
+      geolocationType: '',
       longitude: '',
       latitude: '',
       filmType: '',
@@ -83,52 +89,51 @@ export default {
       address: '',
       startDate: '',
       year: '',
+      id: ''
     };
   },
   methods: {
     async submitForm() {
-      if (this.type === 'Feature') {
-        this.coordinates = [];
-      } else {
-        this.coordinates = [this.longitude, this.latitude];
-        console.log(this.coordinates)
-      }
-      const filmData = JSON.stringify({
-        "geolocation": {
-          "type": this.type,
-          "coordinates": this.coordinates,
+      let self = this;
+      const options = {
+        method: 'POST',
+        url: 'http://localhost:3000/locations/',
+        params: { offset: 0, limit: 9 },
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         },
-        "filmType": this.filmType,
-        "filmProducerName": this.filmProducerName,
-        "endDate": this.endDate,
-        "filmName": this.filmName,
-        "district": this.district,
-        "sourceLocationId": this.sourceLocationId,
-        "filmDirectorName": this.filmDirectorName,
-        "address": this.address,
-        "startDate": this.startDate,
-        "year": this.year,
-      });
-
-      try {
-        const { data } = await axios.post('http://localhost:3000/locations', {
-          filmData,
-          params: {
-            offset: '0',
-            limit: '9'
+        data: {
+          filmType: this.filmType,
+          filmProducerName: this.filmProducerName,
+          geolocation: {
+            type: this.geolocationType,
+            coordinates: [this.longitude, this.latitude]
           },
-          headers: {
-            'Content-Type': 'application/json',
-            'Bearer': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
-        console.log(data);
-        this.$router.push('/locations')
-      } catch (error) {
+          endDate: this.endDate,
+          filmName: this.filmName,
+          district: this.district,
+          sourceLocationId: this.sourceLocationId,
+          filmDirectorName: this.filmDirectorName,
+          address: this.address,
+          startDate: this.startDate,
+          year: this.year
+        }
+      };
+      axios.request(options).then(function (response) {
+        console.log(response.data);
+        self.$router.push('/location/' + response.data._id);
+      }).catch(function (error) {
         console.error(error);
-      }
+      });
     },
   }
 }
 
 </script>
+
+<style>
+  footer {
+    margin-top: 20px;
+  }
+</style>

@@ -11,11 +11,11 @@ import HelloWorld from './HelloWorld.vue'
   </header>
   <form @submit.prevent="submitForm">
     <div>
-      <label for="username">Username:</label>
+      <label for="username">Username: </label>
       <input id="username" v-model="username"/>
     </div>
     <div>
-      <label for="password">Password:</label>
+      <label for="password">Password: </label>
       <input id="password" v-model="password" type="password"/>
     </div>
     <button type="submit">Submit</button>

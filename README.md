@@ -28,7 +28,6 @@ US3: As a logged-in user, I want to see locations and be able to click on one lo
 US6: As an “admin" user, I want to see a button to delete locations in the array of locations so that I can delete existing locations
 
 US7: As a logged-in user, I want to be able to sign-out
-## Information 
-An admin user is already present
 
-its credentials are <b>admin:admin</b>
+## Information 
+It is necessary to use the HMI of mongo atlas to create an admin user

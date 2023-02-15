@@ -9,7 +9,8 @@
     <h3>Code postal : {{ locationData.district }}</h3>
 
     <footer>
-      <router-link to="/locations">Back to locations</router-link>
+      <router-link v-bind:to="{name: 'locations'}">Back to Locations</router-link>
+
     </footer>
 
   </div>

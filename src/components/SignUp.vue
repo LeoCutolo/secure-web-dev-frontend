@@ -20,6 +20,9 @@ import HelloWorld from './HelloWorld.vue'
     </div>
     <button type="submit">Submit</button>
   </form>
+  <div>
+    Already have an account? <router-link to="/login">Sign in</router-link>
+  </div>
 </template>
 
 <script>
