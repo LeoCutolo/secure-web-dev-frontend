@@ -186,7 +186,9 @@ export default {
         this.locationData = data;
         this.geolocation = this.locationData.geolocation;
       } catch (error) {
+        alert("You are not logged in. Please log in to view locations.");
         console.error(error);
+        this.$router.push('/login');
       }
     },
     getData() {
