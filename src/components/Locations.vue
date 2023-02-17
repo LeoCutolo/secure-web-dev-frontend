@@ -6,12 +6,13 @@
 
     <div class="locations-grid">
       <div v-for="location in this.locations" :key="location">
-        <div class="">
+        <div id="location">
           <router-link v-bind:to="{ name: 'location', params: { id: location._id }}">{{ location.filmName }}</router-link>
+          <p id="filmType">{{ location.filmType }}</p>
           <p id="directorName">{{ location.filmDirectorName.toLowerCase() }}</p>
-          <div v-if="this.role === 'admin'" class="adminSection">
-            <router-link v-bind:to="{name: editlocation, params: { id: location._id }}">Edit</router-link>
-            <button @click="remove(location)">Delete</button>
+          <div v-if="this.role === 'admin'" id ="adminSection">
+            <router-link v-bind:to="{name: 'editlocation', params: { id: location._id }}">Edit</router-link>
+            <router-link v-bind:to="{name: 'locations'}" @click="remove(location)">Delete</router-link>
           </div>
         </div>
       </div>
@@ -19,11 +20,11 @@
 
     <footer>
       <div class="navigation">
-        <button @click="previous">Previous locations</button>
-        <button @click="next">Next locations</button>
+        <router-link v-bind:to="{name: 'locations'}" @click="previous">Previous locations</router-link>
+        <router-link v-bind:to="{name: 'locations'}" @click="next">Next locations</router-link>
       </div>
       <div v-if="this.role === 'admin'">
-        <button @click="add">Add a location</button>
+        <router-link v-bind:to="{name: 'add'}">Add a location</router-link>
       </div>
     </footer>
   </div>
@@ -122,6 +123,13 @@ export default {
 
 <style scoped>
 
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
 h1 {
   display: block;
   margin-block-start: 0.67em;
@@ -133,20 +141,29 @@ h1 {
 }
 
 .container {
-  display: block;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 0 1rem;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-areas:
+    "header"
+    "locations-grid"
+    "footer";
   height: 100vh;
-  width: 100vh;
 }
-
 
 .locations-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(400px, 1fr));
-  grid-gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-column-gap: 10rem;
+}
+
+#location {
+  padding: 1rem;
+}
+
+.locations-grid #location #adminSection {
+  display: flex;
+  justify-content: space-around;
+  padding-right: 50%;
 }
 
 #directorName{
@@ -154,10 +171,9 @@ h1 {
   text-transform: capitalize;
 }
 
-
-footer {
-  display: block;
-  justify-content: space-between;
+footer .navigation {
+  display: flex;
+  justify-content: space-around;
 }
 
 </style>

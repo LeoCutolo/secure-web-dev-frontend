@@ -9,7 +9,8 @@
     <h3>Code postal : {{ locationData.district }}</h3>
 
     <footer>
-      <router-link to="/locations">Back to locations</router-link>
+      <router-link v-bind:to="{name: 'locations'}">Back to Locations</router-link>
+
     </footer>
 
   </div>
@@ -65,7 +66,9 @@ export default {
         this.geolocation = this.locationData.geolocation;
         console.log(this.locationData)
       } catch (error) {
+        alert("You are not logged in. Please log in to view locations.");
         console.error(error);
+        this.$router.push('/login');
       }
     },
   },
