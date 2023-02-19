@@ -32,7 +32,8 @@ jobs:
       
     - name: Test webpage
       run: |
-        if curl --fail localhost:8080; then
+        curl localhost:8080
+        if [ $? -eq 0 ]
           echo "Web page is running"
         else
           echo "Web page isn't running"
