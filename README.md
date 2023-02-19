@@ -2,6 +2,9 @@
 
 ## Project Setup
 
+Create an `.env` file at the root of your project containing (replace with your data):
+   > VITE_BACK_URL=url to backend
+
 ```sh
 npm install
 ```

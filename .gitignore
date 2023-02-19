@@ -17,8 +17,10 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
-*.env*
 Dockerfile
+.dockerignore
+.gitignore
+*.env*
 
 # Editor directories and files
 .vscode/*
