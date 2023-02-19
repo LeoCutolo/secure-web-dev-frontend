@@ -29,7 +29,11 @@ jobs:
     
     - name: Run docker container
       run: docker run -d -p 8080:8080 --name frontend leocutolo/frontend:latest
-      
+    
+    - name: sleep 1 min
+      run: |
+        sleep 1m
+    
     - name: Test webpage
       run: |
         curl localhost:8080
