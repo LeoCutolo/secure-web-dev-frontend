@@ -39,7 +39,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const { data } = await axios.post('http://localhost:3000/users/login', {
+        const { data } = await axios.post(import.meta.env.VITE_BACK_URL + '/users/login', {
           username: this.username,
           password: this.password,
           headers: {
@@ -55,7 +55,7 @@ export default {
     },
     async setRole(token) {
       try{
-        const {data} = await axios.get('http://localhost:3000/users/me', {
+        const {data} = await axios.get(import.meta.env.VITE_BACK_URL + '/users/me', {
           headers: {
             'Authorization': `Bearer ${token}`
           }

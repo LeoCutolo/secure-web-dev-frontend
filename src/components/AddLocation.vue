@@ -97,7 +97,7 @@ export default {
       let self = this;
       const options = {
         method: 'POST',
-        url: 'http://localhost:3000/locations/',
+        url: import.meta.env.VITE_BACK_URL + '/locations/',
         params: { offset: 0, limit: 9 },
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

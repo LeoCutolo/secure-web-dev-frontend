@@ -39,7 +39,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const { data } = await axios.post('http://localhost:3000/users/register', {
+        const { data } = await axios.post(import.meta.env.VITE_BACK_URL + '/users/register', {
           username: this.username,
           password: this.password,
           headers: {

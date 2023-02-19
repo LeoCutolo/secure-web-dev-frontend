@@ -55,7 +55,7 @@ export default {
   methods: {
     async getLocations(){
       try {
-        const { data } = await axios.get('http://localhost:3000/locations', {
+        const { data } = await axios.get(import.meta.env.VITE_BACK_URL + '/locations', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
@@ -98,7 +98,7 @@ export default {
         return;
       }
       try {
-        await axios.delete('http://localhost:3000/locations/' + location._id, {
+        await axios.delete(import.meta.env.VITE_BACK_URL + '/locations/' + location._id, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json',

@@ -52,7 +52,7 @@ export default {
   methods: {
     async getLocation(){
       try {
-        const { data } = await axios.get('http://localhost:3000/locations/' + this.id, {
+        const { data } = await axios.get(import.meta.env.VITE_BACK_URL + '/locations/' + this.id, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
