@@ -1,0 +1,23 @@
+name: Docker build and run
+
+on:
+  push:
+    branches: [ main ]
+  
+jobs:
+  build-and-run:
+    runs-on: debian-11
+    env:
+      BACK_URL: ${{ secrets.VITE_BACK_URL }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Create .env file
+      run: echo "VITE_BACK_URL=${VITE_BACK_URL}" > .env
+    
+    - name: build docker image
+      run: docker build . -t leocutolo/frontend
+      
+    - name: Run the docker container
+      run: docker run -d -p 8080:8080 --name web-frontend leocutolo/frontend
